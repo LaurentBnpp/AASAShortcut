@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Universal Links</title>
+</head>
+<body>
+    <h1>Universal Links pour Hello bank!</h1>
+    <p>Cliquez sur le lien ci-dessous pour ouvrir l'application Hello bank! :</p>
+    <a id="helloBankLink" href="#">Ouvrir Hello bank!</a>
+
+    <script>
+        // Récupération du fichier AASA
+        fetch('https://hellobank.fr/apple-app-site-association')
+            .then(response => response.text())
+            .then(aasaContent => {
+                // Création du lien universel
+                const aasaLink = document.getElementById('helloBankLink');
+                aasaLink.href = `https://hellobank.fr/apple-app-site-association#${btoa(aasaContent)}`;
+            })
+            .catch(error => {
+                console.error('Erreur lors de la récupération du fichier AASA :', error);
+            });
+    </script>
+</body>
+</html>
+
